@@ -15,19 +15,19 @@ _Then I noticed another bug ..._
 
 ## Exercise 1
 #### Error 1
-_EXPECTED: When a pizza order is submitted through the order form, it should redirect to the home page and show the pizza order on the homepage_
-_ACTUAL: When submitting the form, an error is thrown that says the following `TypeError: 'topping' is an invalid keyword argument for PizzaTopping` which originates from line 96 in the function pizza_order_submit in app.py_
+_EXPECTED: When a pizza order is submitted through the order form, it should redirect to the home page and show the pizza order on the homepage_ </br>
+_ACTUAL: When submitting the form, an error is thrown that says the following `TypeError: 'topping' is an invalid keyword argument for PizzaTopping` which originates from line 96 in the function `pizza_order_submit` in app.py_
 - On line 96, we assume that we add a pizza topping from the PizzaTopping model, which has the attribute `topping_type` and not just `topping`
 - Changing to the correct spelling format fixed the bug </br>
 
 #### Error 2
-_EXPECTED: When a pizza order is submitted through the order form, it should redirect to the home page and show the pizza order on the homepage_
+_EXPECTED: When a pizza order is submitted through the order form, it should redirect to the home page and show the pizza order on the homepage_ </br>
 _ACTUAL: When form is submitted, a URL endpoint build error is thrown `werkzeug.routing.BuildError: Could not build url for endpoint '/'. Did you mean 'fulfill_order' instead?`_
 - `url_for` takes in a function name of a route, not the route itself
 - changing to the name of the route function (home) fixed it </br>
 
 #### Error 3
-_EXPECTED: When a pizza order is submitted through the order form, it should redirect to the home page and show the pizza order on the homepage_
+_EXPECTED: When a pizza order is submitted through the order form, it should redirect to the home page and show the pizza order on the homepage_ </br>
 _ACTUAL: The pizza order is not showing on the home page, but the flash is there which means the `pizza_order_submit` function ran all the way through_
 - I first checked that the home page query was correct and was accessing pizza attributes correctly
 - Then, I checked all routes, especially the route that does the POST request to /order
@@ -40,7 +40,7 @@ _ACTUAL: The pizza order is not showing on the home page, but the flash is there
 - When checking all form data, the `request.form.get` attribute names were not correct (`name` is supposed to be `order_name`, `size` is supposed to be `pizza_size`) </br>
 
 #### Error 4
-_EXPECTED: When a pizza order is submitted through the order form, it should redirect to the home page and show the CORRECT pizza order on the homepage_
+_EXPECTED: When a pizza order is submitted through the order form, it should redirect to the home page and show the CORRECT pizza order on the homepage_ </br>
 _ACTUAL: It shows the pizza with all available toppings_
 - The toppings are added in the for loop on line 94, which loops through each topping type
 - The toppings_list data from the form is also never accessed
