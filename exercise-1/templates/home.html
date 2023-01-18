@@ -3,10 +3,14 @@
 {% block content %}
 <h1>Pizza Orders</h1>
 
+<!-- We assume this takes you to the new order route and this is an actual route that does not need to take in parameters-->
 <a href="/order">+ New Order</a>
 
 {% for pizza in pizza_orders %}
+<!-- We assume this takes in a pizza_orders variable from the flask app and iterates over each element in the list -->
+
 <div class="pizza_order">
+    <!-- We assume the pizza model has size, crust_type, order_name, and toppings attributes -->
     <p>
         <strong>Size</strong>: {{ pizza.size.value }} 
     </p>
@@ -33,6 +37,12 @@
     </form>
 </div>
 {% else %}
+
+<!-- We assume there are no pizzas in the pizza query -->
+{#<!-- <p>{{ pizza_orders|length }}</p> -->#}
+<!-- This gives us the error "TypeError: object of type 'BaseQuery' has no len()", doesn't really matter for looping though, not the issue -->
 <p>No pizza orders to show!</p>
+
 {% endfor %}
+
 {% endblock %}
