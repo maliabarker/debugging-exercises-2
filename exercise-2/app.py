@@ -33,25 +33,29 @@ def get_letter_for_units(units):
     """Returns a shorthand letter for the given units."""
     return 'F' if units == 'imperial' else 'C' if units == 'metric' else 'K'
 
-@app.route('/results')
+@app.route('/results', methods=['GET', 'POST'])
 def results():
     """Displays results for current weather conditions."""
-    city = request.args.get('users_city')
-    units = request.args.get('requested_units')
+    city = request.args.get('city')
+    units = request.args.get('units')
+
+    print(f'CITY: {city}')
+    print(f'UNITS: {units}')
 
     url = 'http://api.openweathermap.org/data/2.5/weather'
     params = {
         'appid': API_KEY,
-        'place': city,
+        'q': city,
         'units': units
     }
     result_json = requests.get(url, params=params).json()
+    print(result_json)
 
     context = {
         'date': datetime.now(),
         'city': result_json['name'],
         'description': result_json['weather'][0]['description'],
-        'temp': result_json['main']['temperature'],
+        'temp': result_json['main']['temp'],
         'humidity': result_json['main']['humidity'],
         'wind_speed': result_json['wind']['speed'],
         'units_letter': get_letter_for_units(units)
