@@ -56,8 +56,43 @@ _**And we're done!**_
 
 ## Exercise 2
 
-[[Your answer goes here!]]
+#### Error 1
+_EXPECTED: When submitting our city name and unit, we expect it to return the weather_</br>
+_ACTUAL: We get an KeyError that says the following..._
+- `KeyError: 'name', 'city': result_json['name']`
+- This is on line 52 in the results function of app.py
+- Let's print the `result_json` object to see what it looks like and if we can actual access things with brackets
+- This is what we get: `{'cod': '400', 'message': 'Nothing to geocode'}`
+- Let's check out the API and see if we are accessing it correctly
+- It looks like things may be correct on the API side, let's look and see if we are accessing the form data correctly
+- When printing the city and units, they come back as `None`, which means something is going wrong with accessing the form data (or it's not sending the form data at all). Let's look at the html form
+- The names of the form inputs are `name` and `units`, but they are on app.py as `user_city` and `requested_units`
+
+#### Error 2
+_EXPECTED: When submitting our city name and unit, we expect it to return the weather_ </br>
+_ACTUAL: We get a KeyError that says the following..._
+- `KeyError: 'temperature'`, `'temp': result_json['main']['temperature'],`
+- This is on line 58 in results function on app.py
+- When looking at the printed `result_json`, we see there is no temperature attribute in main, just temp
+
+_**And we're done!**_
 
 ## Exercise 3
 
-[[Your answer goes here!]]
+#### Error 1
+_EXPECTED: When we submit a list of numbers, we expect to get back a sorted list from `merge_sort`_ </br>
+_ACTUAL: We get and IndexError that says the following..._
+- From the `merge_sort()` function on line 37, we get `arr[k] = right_side[i], IndexError: list index out of range`
+- Let's print mid, left and right side, and i, j, and k to make sure they are the correct & expected values
+- To get more of a sense of what is going on, let's print all the steps
+- On the line that was getting the error, it said `right_side[i] was out of range`, because in this block we are dealing with the variable `j`, not `i`. Changing `i` to `j` seems to fix the issue
+
+#### Error 2
+_EXPECTED: When we submit a sorted list of numbers, we expect to get the index of the number 5 in the list back from `binary_search`_ </br>
+_ACTUAL: We get a TypeError that says the following..._
+- `TypeError: list indices must be integers or slices, not float`
+- The error comes from line 70 in the `binary_search` function
+- We assume that mid would be the middle index, which needs to be a whole integer
+- We see that to calculate mid, we use `(high + low) / 2`, but we need to use `//` instead
+
+_**And we're done!**_
